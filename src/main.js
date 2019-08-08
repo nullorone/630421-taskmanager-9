@@ -191,17 +191,9 @@ const cardTaskMarkUp = () => `
           </article>
 `;
 
-// Разметка доски с карточками задач
-const boardTasksMarkup = () => `
-<section class="board container">
-        <div class="board__filter-list">
-          <a href="#" class="board__filter">SORT BY DEFAULT</a>
-          <a href="#" class="board__filter">SORT BY DATE up</a>
-          <a href="#" class="board__filter">SORT BY DATE down</a>
-        </div>
-
-        <div class="board__tasks">
-          <article class="card card--edit card--yellow card--repeat">
+// Разметка карточки редактирования задачи
+const cardEditTaskMarkup = () => `
+  <article class="card card--edit card--yellow card--repeat">
             <form class="card__form" method="get">
               <div class="card__inner">
                 <div class="card__control">
@@ -468,8 +460,14 @@ const boardTasksMarkup = () => `
               </div>
             </form>
           </article>
-        </div>
-      </section>
+`;
+
+// Разметка доски с карточками задач
+const boardTasksMarkup = (tasks, button) => `
+    <section class="board container">
+        <div class="board__tasks">${tasks}</div>
+        ${button}
+    </section>
 `;
 
 // Разметка кнопки Load More
@@ -480,22 +478,22 @@ const renderComponent = (elementContainer, markup) => {
   return elementContainer.insertAdjacentHTML(`beforeend`, markup);
 };
 
+const getCardTasks = () => (cardEditTaskMarkup() + generateCardTask(CARD_COUNT));
+
 // Рендерим карточку задачи указанное количество раз. По умолчанию рендерится 1 карточка
-const renderCardTask = (cardTaskCount = 1) => {
+const generateCardTask = (cardTaskCount = 1) => {
+  let cardTaskMarkup = ``;
   for (let i = 0; i < cardTaskCount; i++) {
-    const boardTasks = document.querySelector(`.board__tasks`);
-    renderComponent(boardTasks, cardTaskMarkUp());
+    cardTaskMarkup += cardTaskMarkUp();
   }
+  return cardTaskMarkup;
 };
+
+const combineMarkupsToMain = () => mainSearchMarkup() + mainFilterMarkup() + boardTasksMarkup(getCardTasks(), buttonLearnMoreMarkup());
 
 const renderLayout = () => {
   renderComponent(mainControl, controlBtnMarkup());
-  renderComponent(main, mainSearchMarkup());
-  renderComponent(main, mainFilterMarkup());
-  renderComponent(main, boardTasksMarkup());
-  renderCardTask(CARD_COUNT);
-  const board = document.querySelector(`.board`);
-  renderComponent(board, buttonLearnMoreMarkup());
+  renderComponent(main, combineMarkupsToMain());
 };
 
 renderLayout();
