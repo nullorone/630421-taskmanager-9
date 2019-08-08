@@ -191,6 +191,15 @@ const cardTaskMarkUp = () => `
           </article>
 `;
 
+// Рендерим карточку задачи указанное количество раз. По умолчанию рендерится 1 карточка
+const generateCardTask = (cardTaskCount = 1) => {
+  let cardTaskMarkup = ``;
+  for (let i = 0; i < cardTaskCount; i++) {
+    cardTaskMarkup += cardTaskMarkUp();
+  }
+  return cardTaskMarkup;
+};
+
 // Разметка карточки редактирования задачи
 const cardEditTaskMarkup = () => `
   <article class="card card--edit card--yellow card--repeat">
@@ -462,14 +471,6 @@ const cardEditTaskMarkup = () => `
           </article>
 `;
 
-// Разметка доски с карточками задач
-const boardTasksMarkup = (tasks, button) => `
-    <section class="board container">
-        <div class="board__tasks">${tasks}</div>
-        ${button}
-    </section>
-`;
-
 // Разметка кнопки Load More
 const buttonLearnMoreMarkup = () => `<button class="load-more" type="button">load more</button>`;
 
@@ -478,18 +479,18 @@ const renderComponent = (elementContainer, markup) => {
   return elementContainer.insertAdjacentHTML(`beforeend`, markup);
 };
 
-const getCardTasks = () => (cardEditTaskMarkup() + generateCardTask(CARD_COUNT));
+// Разметка доски с карточками задач
+const boardTasksMarkup = () => `
+    <section class="board container">
+        <div class="board__tasks">
+            ${cardEditTaskMarkup()}
+            ${generateCardTask(CARD_COUNT)}
+        </div>
+        ${buttonLearnMoreMarkup()}
+    </section>
+`;
 
-// Рендерим карточку задачи указанное количество раз. По умолчанию рендерится 1 карточка
-const generateCardTask = (cardTaskCount = 1) => {
-  let cardTaskMarkup = ``;
-  for (let i = 0; i < cardTaskCount; i++) {
-    cardTaskMarkup += cardTaskMarkUp();
-  }
-  return cardTaskMarkup;
-};
-
-const combineMarkupsToMain = () => mainSearchMarkup() + mainFilterMarkup() + boardTasksMarkup(getCardTasks(), buttonLearnMoreMarkup());
+const combineMarkupsToMain = () => mainSearchMarkup() + mainFilterMarkup() + boardTasksMarkup();
 
 const renderLayout = () => {
   renderComponent(mainControl, controlBtnMarkup());
