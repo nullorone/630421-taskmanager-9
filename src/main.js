@@ -1,4 +1,6 @@
 // eslint-disable-next-line strict
+const CARD_COUNT = 3;
+
 const main = document.querySelector(`.main`);
 const mainControl = document.querySelector(`.main__control`);
 
@@ -491,7 +493,7 @@ const renderLayout = () => {
   renderComponent(main, mainSearchMarkup());
   renderComponent(main, mainFilterMarkup());
   renderComponent(main, boardTasksMarkup());
-  renderCardTask(3);
+  renderCardTask(CARD_COUNT);
   const board = document.querySelector(`.board`);
   renderComponent(board, buttonLearnMoreMarkup());
 };
