@@ -1,4 +1,4 @@
-# Личный проект «Менеджер задач» [![Build status][travis-image]][travis-url]
+# Учебный проект «Менеджер задач» [![Build status][travis-image]][travis-url]
 
 * Студент: [Yaroslav Sveshnikov](https://up.htmlacademy.ru/ecmascript/9/user/630421).
 * Наставник: [Владимир Коршунов](https://htmlacademy.ru/profile/id83596).
