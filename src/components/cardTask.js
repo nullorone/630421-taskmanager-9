@@ -76,4 +76,5 @@ const generateCardTask = (cardTaskCount = 1) => {
   return cardTaskMarkup;
 };
 
-export default generateCardTask;
+export {generateCardTask};
+

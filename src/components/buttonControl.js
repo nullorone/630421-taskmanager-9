@@ -30,4 +30,5 @@ const getButtonControlMarkup = () => `
         </section>
 `;
 
-export default getButtonControlMarkup;
+export {getButtonControlMarkup};
+

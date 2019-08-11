@@ -12,4 +12,5 @@ const getSearchMarkup = () => `
       </section>
 `;
 
-export default getSearchMarkup;
+export {getSearchMarkup};
+

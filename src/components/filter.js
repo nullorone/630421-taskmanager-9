@@ -70,4 +70,4 @@ const getFilterMarkup = () => `
     </section>
 `;
 
-export default getFilterMarkup;
+export {getFilterMarkup};

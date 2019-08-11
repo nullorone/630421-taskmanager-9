@@ -1,6 +1,6 @@
-import cardEditTask from "./cardEditTask";
-import cardTask from "./cardTask";
-import buttonLoadMoreMarkup from "./buttonLoadMore";
+import {getCardEditTaskMarkup} from "./cardEditTask";
+import {generateCardTask} from "./cardTask";
+import {getButtonLoadMoreMarkup} from "./buttonLoadMore";
 
 const CARD_COUNT = 3;
 
@@ -9,11 +9,12 @@ const CARD_COUNT = 3;
 const getBoardTasksMarkup = () => `
     <section class="board container">
         <div class="board__tasks">
-            ${cardEditTask()}
-            ${cardTask(CARD_COUNT)}
+            ${getCardEditTaskMarkup()}
+            ${generateCardTask(CARD_COUNT)}
         </div>
-        ${buttonLoadMoreMarkup()}
+        ${getButtonLoadMoreMarkup()}
     </section>
 `;
 
-export default getBoardTasksMarkup;
+export {getBoardTasksMarkup};
+

@@ -269,4 +269,5 @@ const getCardEditTaskMarkup = () => `
           </article>
 `;
 
-export default getCardEditTaskMarkup;
+export {getCardEditTaskMarkup};
+

@@ -1,8 +1,9 @@
-import searchMarkup from "./search";
-import filterMarkup from "./filter";
-import boardTasksMarkup from "./board";
+import {getSearchMarkup} from "./search";
+import {getFilterMarkup} from "./filter";
+import {getBoardTasksMarkup} from "./board";
 
 
-const getCombineMainMarkup = () => searchMarkup() + filterMarkup() + boardTasksMarkup();
+const getCombineMainMarkup = () => getSearchMarkup() + getFilterMarkup() + getBoardTasksMarkup();
 
-export default getCombineMainMarkup;
+export {getCombineMainMarkup};
+
