@@ -1,3 +1,47 @@
+import {checkRepeatingTask} from "../utils/util";
+
+let taskAllCount = false;
+let taskOverdueCount = false;
+let taskTodayCount = false;
+let taskFavoriteCount = false;
+let taskRepeatingCount = false;
+let taskTagsCount = false;
+let taskArchiveCount = false;
+
+const generateCountTask = (title, count) => ({
+  title,
+  count,
+});
+
+const generateCountValues = (tasks) => {
+  let countTaskValue;
+  for (const task of tasks) {
+    countTaskValue = countValues(task);
+  }
+  console.log(countTaskValue)
+  return countTaskValue;
+};
+
+const countValues = (task) => {
+  taskAllCount += Boolean(task);
+  taskOverdueCount += (task.dueDate < Date.now());
+  taskTodayCount += (task.dueDate === Date.now());
+  taskFavoriteCount += task.isFavorite;
+  taskRepeatingCount += checkRepeatingTask(task.repeatingDays);
+  taskTagsCount += task.tags.size;
+  taskArchiveCount += task.isArchive;
+  return [
+    generateCountTask(`All`, taskAllCount),
+    generateCountTask(`Overdue`, taskOverdueCount),
+    generateCountTask(`Today`, taskTodayCount),
+    generateCountTask(`Favorites`, taskFavoriteCount),
+    generateCountTask(`Repeating`, taskRepeatingCount),
+    generateCountTask(`Tags`, taskTagsCount),
+    generateCountTask(`Archive`, taskArchiveCount),
+  ];
+};
+
+
 // Разметка фильтров
 const getFilterMarkup = () => `
   <section class="main__filter filter container">
@@ -70,4 +114,4 @@ const getFilterMarkup = () => `
     </section>
 `;
 
-export {getFilterMarkup};
+export {getFilterMarkup, generateCountValues};

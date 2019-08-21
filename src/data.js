@@ -1,4 +1,4 @@
-import {getRandomValueOfProps, getRandomBoolean, getShuffleArray, checkRepeatingTask} from "./utils/util";
+import {getRandomValueOfProps, getRandomBoolean, getShuffleArray} from "./utils/util";
 
 const TASK_DESCRIPTIONS = [`Изучить теорию`, `Сделать домашку`, `Пройти интенсив на соточку`];
 const DAY_IN_WEEK = 7;
@@ -29,44 +29,5 @@ const getMockTask = () => ({
   isArchive: getRandomBoolean(),
 });
 
-let taskCount = false;
-let taskOverdueCount = false;
-let taskTodayCount = false;
-let taskFavoriteCount = false;
-let taskRepeatingCount = false;
-let taskTagsCount = false;
-let taskArchiveCount = false;
 
-const getFilterData = (task) => {
-  const filters = Array.of({
-    title: `All`,
-    count: taskCount += Boolean(task),
-  },
-  {
-    title: `Overdue`,
-    count: taskOverdueCount += (task.dueDate < Date.now()),
-  },
-  {
-    title: `Today`,
-    count: taskTodayCount += (task.dueDate === Date.now()),
-  },
-  {
-    title: `Favorites`,
-    count: taskFavoriteCount += task.isFavorite,
-  },
-  {
-    title: `Repeating`,
-    count: taskRepeatingCount += checkRepeatingTask(task.repeatingDays),
-  },
-  {
-    title: `Tags`,
-    count: taskTagsCount += task.tags.size,
-  },
-  {
-    title: `Archive`,
-    count: taskArchiveCount += task.isArchive,
-  });
-  return filters;
-};
-
-export {getMockTask, getFilterData};
+export {getMockTask};

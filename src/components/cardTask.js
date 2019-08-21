@@ -1,4 +1,3 @@
-import {getMockTask, getFilterData} from "../data";
 import {checkRepeatingTask} from "../utils/util";
 
 
@@ -66,20 +65,11 @@ const getCardTaskMarkUp = ({
     </article>
 `;
 
-const mockTasks = [];
-let filterCounts;
-
-const combineTask = (task) => {
-  mockTasks.push(task);
-  filterCounts = getFilterData(task);
-  return getCardTaskMarkUp(task);
-};
-
 // Рендерим карточку задачи указанное количество раз. По умолчанию рендерится 1 карточка
-const generateCardTask = (cardTaskCount = 1) => {
+const generateCardTask = (tasks) => {
   let cardTaskMarkup = ``;
-  for (let i = 0; i < cardTaskCount; i++) {
-    cardTaskMarkup += combineTask(getMockTask());
+  for (const task of tasks) {
+    cardTaskMarkup += getCardTaskMarkUp(task);
   }
   return cardTaskMarkup;
 };
