@@ -5,13 +5,13 @@ import {getFilterMarkup, generateCountValues} from "./components/filter";
 import {getBoardTasksMarkup} from "./components/board";
 import {getMockTask} from "./data";
 
-const CARD_COUNT = 3;
+const CARD_COUNT = 16;
 
 const main = document.querySelector(`.main`);
 const mainControl = document.querySelector(`.main__control`);
 
 const tasks = new Array(CARD_COUNT).fill(``).map(getMockTask);
-console.log(tasks)
+
 const renderLayout = () => {
   renderComponent(mainControl, getButtonControlMarkup());
   renderComponent(main, (getSearchMarkup() + getFilterMarkup(generateCountValues(tasks)) + getBoardTasksMarkup(tasks)));
