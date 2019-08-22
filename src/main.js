@@ -2,10 +2,10 @@ import {getButtonControlMarkup} from "./components/buttonControl";
 import {renderComponent} from "./utils/util";
 import {getSearchMarkup} from "./components/search";
 import {getFilterMarkup, generateCountValues} from "./components/filter";
-import {getBoardTasksMarkup} from "./components/board";
+import {getBoardTasksMarkup, onButtonLoadMoreClick} from "./components/board";
 import {getMockTask} from "./data";
 
-const CARD_COUNT = 16;
+const CARD_COUNT = 35;
 
 const main = document.querySelector(`.main`);
 const mainControl = document.querySelector(`.main__control`);
@@ -18,3 +18,8 @@ const renderLayout = () => {
 };
 
 renderLayout();
+
+const buttonLoadMore = document.querySelector(`.load-more`);
+if (buttonLoadMore) {
+  buttonLoadMore.addEventListener(`click`, onButtonLoadMoreClick);
+}

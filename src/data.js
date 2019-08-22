@@ -29,5 +29,4 @@ const getMockTask = () => ({
   isArchive: getRandomBoolean(),
 });
 
-
 export {getMockTask};

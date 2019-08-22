@@ -1,6 +1,5 @@
 import {checkRepeatingTask} from "../utils/util";
 
-
 // Разметка карточки задачи
 const getCardTaskMarkUp = ({
   description = `Example default task with default color.`,
@@ -67,11 +66,7 @@ const getCardTaskMarkUp = ({
 
 // Рендерим карточку задачи указанное количество раз. По умолчанию рендерится 1 карточка
 const generateCardTask = (tasks) => {
-  let cardTaskMarkup = ``;
-  for (const task of tasks) {
-    cardTaskMarkup += getCardTaskMarkUp(task);
-  }
-  return cardTaskMarkup;
+  return tasks.map(getCardTaskMarkUp);
 };
 
 export {generateCardTask};
