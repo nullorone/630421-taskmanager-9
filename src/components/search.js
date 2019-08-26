@@ -1,6 +1,6 @@
-// Разметка поиска
-const getSearchMarkup = () => `
-  <section class="main__search search container">
+export default class Search {
+  render() {
+    return `<section class="main__search search container">
         <input
           type="text"
           id="search__input"
@@ -9,8 +9,7 @@ const getSearchMarkup = () => `
           value="#work"
         />
         <label class="visually-hidden" for="search__input">Поиск</label>
-      </section>
-`;
-
-export {getSearchMarkup};
+      </section>`;
+  }
+};
 
