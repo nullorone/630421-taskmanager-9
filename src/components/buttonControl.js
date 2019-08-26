@@ -1,6 +1,6 @@
-// Разметка функциональных кнопок управления списком задач
-const getButtonControlMarkup = () => `
-  <section class="control__btn-wrap">
+export default class ButtonControl {
+  render() {
+    return `<section class="control__btn-wrap">
           <input
             type="radio"
             name="control"
@@ -27,8 +27,7 @@ const getButtonControlMarkup = () => `
           <label for="control__statistic" class="control__label"
             >STATISTICS</label
           >
-        </section>
-`;
-
-export {getButtonControlMarkup};
+        </section>`;
+  }
+}
 

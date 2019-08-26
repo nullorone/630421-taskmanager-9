@@ -1,6 +1,6 @@
 import {getCardEditTaskMarkup} from "./cardEditTask";
-import {generateCardTask} from "./cardTask";
-import {getButtonLoadMoreMarkup} from "./buttonLoadMore";
+import CardTask from "./cardTask";
+import ButtonLoadMore from "./buttonLoadMore";
 import {renderComponent} from "../utils/util";
 
 const CardAmount = {
@@ -12,15 +12,19 @@ const ADDER_VALUE = 8;
 
 let hiddenTasks;
 
+const ButtonLoadMoreComponent = new ButtonLoadMore();
+
 // Разметка доски с карточками задач
 const getBoardTasksMarkup = (tasks) => {
-  hiddenTasks = generateCardTask(tasks.slice(CardAmount.END));
+
+  const CardTaskComponent = new CardTask();
+  hiddenTasks = CardTaskComponent.render(tasks.slice(CardAmount.END));
   return `<section class="board container">
         <div class="board__tasks">
             ${getCardEditTaskMarkup(tasks[0])}
-            ${generateCardTask(tasks.slice(CardAmount.BEGIN, CardAmount.END)).join(``)}
+            ${CardTaskComponent.render(tasks.slice(CardAmount.BEGIN, CardAmount.END)).join(``)}
         </div>
-        ${getButtonLoadMoreMarkup()}
+        ${ButtonLoadMoreComponent.render()}
     </section>`;
 };
 

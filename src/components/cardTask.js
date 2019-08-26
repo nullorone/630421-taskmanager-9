@@ -1,15 +1,25 @@
 import {checkRepeatingTask} from "../utils/util";
 
-// Разметка карточки задачи
-const getCardTaskMarkUp = ({
-  description = `Example default task with default color.`,
-  dueDate,
-  repeatingDays,
-  tags,
-  color,
-  isFavorite,
-  isArchive}) => `
-    <article class="card card--${color} ${checkRepeatingTask(repeatingDays) ? `card--repeat` : ``}">
+export default class CardTask {
+  constructor(description, dueDate, repeatingDays, tags, color, isFavorite, isArchive) {
+    this._description = description;
+    this._dueDate = dueDate;
+    this._repeatingDays = repeatingDays;
+    this._tags = tags;
+    this._color = color;
+    this._isFavorite = isFavorite;
+    this._isArchive = isArchive;
+  }
+
+  render(tasks) {
+    return tasks.map(({
+      description = `Example default task with default color.`,
+      dueDate,
+      repeatingDays,
+      tags,
+      color,
+      isFavorite,
+      isArchive}) => `<article class="card card--${color} ${checkRepeatingTask(repeatingDays) ? `card--repeat` : ``}">
       <div class="card__form">
         <div class="card__inner">
           <div class="card__control">
@@ -61,13 +71,7 @@ const getCardTaskMarkUp = ({
           </div>
         </div>
       </div>
-    </article>
-`;
+    </article>`);
+  }
 
-// Рендерим карточку задачи указанное количество раз. По умолчанию рендерится 1 карточка
-const generateCardTask = (tasks) => {
-  return tasks.map(getCardTaskMarkUp);
-};
-
-export {generateCardTask};
-
+}

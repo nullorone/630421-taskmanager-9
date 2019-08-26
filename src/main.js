@@ -1,7 +1,7 @@
-import {getButtonControlMarkup} from "./components/buttonControl";
+import ButtonControl from "./components/buttonControl";
 import {renderComponent} from "./utils/util";
-import {getSearchMarkup} from "./components/search";
-import {getFilterMarkup, generateCountValues} from "./components/filter";
+import Search from "./components/search";
+import Filter from "./components/filter";
 import {getBoardTasksMarkup, onButtonLoadMoreClick} from "./components/board";
 import {getMockTask} from "./data";
 
@@ -12,9 +12,13 @@ const mainControl = document.querySelector(`.main__control`);
 
 const tasks = new Array(CARD_COUNT).fill(``).map(getMockTask);
 
+const SearchComponent = new Search();
+const FilterComponent = new Filter();
+const ButtonControlComponent = new ButtonControl();
+
 const renderLayout = () => {
-  renderComponent(mainControl, getButtonControlMarkup());
-  renderComponent(main, (getSearchMarkup() + getFilterMarkup(generateCountValues(tasks)) + getBoardTasksMarkup(tasks)));
+  renderComponent(mainControl, ButtonControlComponent.render());
+  renderComponent(main, (SearchComponent.render() + FilterComponent.render(tasks) + getBoardTasksMarkup(tasks)));
 };
 
 renderLayout();
