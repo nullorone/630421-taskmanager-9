@@ -10,7 +10,7 @@ const getRandomValueOfProps = (number) => {
 
 // Перемешиваем элементы в массиве
 const getShuffleArray = (array) => {
-  let cloneArray = array.slice();
+  const cloneArray = array.slice();
   let randomIndex;
   let tempElement;
   for (let i = 0; i < cloneArray.length; i++) {
